@@ -35,6 +35,29 @@ services:
       - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
+      - loki
+
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
+
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: promtail
+    volumes:
+      - ./promtail.yaml:/etc/promtail/promtail.yaml
+      - /var/log/nginx:/var/log/nginx
+      - /tmp:/tmp
+    command: -config.file=/etc/promtail/promtail.yaml
+    depends_on:
+      - loki
+
 
 networks:
   default:
