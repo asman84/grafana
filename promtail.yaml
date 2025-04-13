@@ -15,5 +15,11 @@ scrape_configs:
           - localhost
         labels:
           job: nginx
-          filename: /var/log/nginx/access.log
-          __path__: /var/log/nginx/*.log
+          __path__: /var/log/nginx/access.log
+
+    pipeline_stages:
+      - regex:
+          expression: '^[^ ]+ [^ ]+ \[[^\]]+\] "(?:GET|POST) (?P<url>[^ ]+) HTTP/[^"]+" \d+ \d+ "[^"]*" "[^"]*" "[^"]*"'
+      - labels:
+          url:
+
