@@ -13,7 +13,6 @@ common:
   ring:
     kvstore:
       store: inmemory
-      #
 
 schema_config:
   configs:
