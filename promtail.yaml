@@ -19,7 +19,7 @@ scrape_configs:
 
     pipeline_stages:
       - regex:
-          expression: '^[^ ]+ [^ ]+ \[[^\]]+\] "(?:GET|POST) (?P<url>[^ ]+) HTTP/[^"]+" \d+ \d+ "[^"]*" "[^"]*" "[^"]*"'
+          expression: '^[^ ]+ [^ ]+ \[[^\]]+\] "(?:GET|POST) (?P<url>[^ ]+) HTTP/[^"]+" (?P<status>\d+) \d+ "[^"]*" "[^"]*" "[^"]*"'
       - labels:
           url:
 
