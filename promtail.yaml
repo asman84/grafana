@@ -22,4 +22,5 @@ scrape_configs:
           expression: '^[^ ]+ [^ ]+ \[[^\]]+\] "(?:GET|POST) (?P<url>[^ ]+) HTTP/[^"]+" (?P<status>\d+) \d+ "[^"]*" "[^"]*" "[^"]*"'
       - labels:
           url:
+          status:
 
